@@ -1,9 +1,12 @@
-var React = require('react-native');
-var {View, Text, StyleSheet, TouchableOpacity, AppRegistry} = React;
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, AppRegistry, Alert, Platform} from 'react-native';
 
 class HelloThere extends React.Component {
   clickMe() {
-    alert('Hi!');
+    Alert.alert(Platform.select({
+        ios: 'Welcome to iOS!',
+      android: 'Welcome to Android!'
+    }));
   }
   render() {
     return (
@@ -21,7 +24,7 @@ class HelloThere extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   box: {
@@ -34,8 +37,8 @@ var styles = StyleSheet.create({
   }
 });
 
-var MainComponent = function() {
-  this.render = function() {
+class MainComponent extends React.Component {
+  render() {
     return <HelloThere name="Component" />;
   }
 };
